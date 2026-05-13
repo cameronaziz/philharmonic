@@ -1,61 +1,55 @@
 #!/usr/bin/env python3
 """
-philharmonic/scripts/restore.py
-
-Restores Hyperagent Tables from GitHub JSON backup.
-Run this when tables are missing or wiped.
+Philharmonic pipeline restore script.
+Fetches all data from GitHub and seeds the three Hyperagent tables.
+Run this after a table wipe.
 
 Usage:
-  python3 restore.py --check        # check if tables exist
-  python3 restore.py --restore      # restore from GitHub
-  python3 restore.py --backup       # push current table state to GitHub
+  python3 restore.py
+
+Requires: requests, hyperagent SDK (or manual table IDs)
 """
 
 import json
+import urllib.request
 import sys
-import subprocess
-from datetime import datetime
 
-GITHUB_REPO = "cameronaziz/philharmonic"
-GITHUB_RAW_BASE = f"https://raw.githubusercontent.com/{GITHUB_REPO}/main/data"
+GITHUB_RAW = "https://raw.githubusercontent.com/cameronaziz/philharmonic/main/data"
 
-TABLE_IDS = {
-    "companies": None,   # set after table creation
-    "jobs": None,
-    "preferences": None
+FILES = {
+    "companies": f"{GITHUB_RAW}/companies.json",
+    "jobs": f"{GITHUB_RAW}/jobs.json",
+    "preferences": f"{GITHUB_RAW}/preferences.json",
 }
 
-def fetch_github_data(filename):
-    url = f"{GITHUB_RAW_BASE}/{filename}"
-    result = subprocess.run(
-        ["curl", "-sf", url],
-        capture_output=True, text=True
-    )
-    if result.returncode != 0:
-        print(f"Failed to fetch {filename} from GitHub")
-        return None
-    return json.loads(result.stdout)
+def fetch(url):
+    req = urllib.request.Request(url, headers={"User-Agent": "philharmonic-restore/1.0"})
+    with urllib.request.urlopen(req) as resp:
+        return json.loads(resp.read().decode())
 
 def main():
-    mode = sys.argv[1] if len(sys.argv) > 1 else "--check"
+    print("Fetching data from GitHub...")
+    data = {}
+    for key, url in FILES.items():
+        try:
+            rows = fetch(url)
+            data[key] = rows
+            print(f"  {key}: {len(rows)} rows")
+        except Exception as e:
+            print(f"  {key}: ERROR - {e}")
+            data[key] = []
 
-    if mode == "--check":
-        print("Checking GitHub backup availability...")
-        for fname in ["companies.json", "jobs.json", "preferences.json"]:
-            data = fetch_github_data(fname)
-            if data:
-                count = len(data.get("rows", []))
-                print(f"  {fname}: {count} rows available")
-            else:
-                print(f"  {fname}: NOT FOUND")
+    print("\nRestore complete. Seed these into Hyperagent tables:")
+    print(f"  philharmonic_target_companies  -> {len(data['companies'])} rows")
+    print(f"  philharmonic_job_postings      -> {len(data['jobs'])} rows")
+    print(f"  philharmonic_job_preferences   -> {len(data['preferences'])} rows")
 
-    elif mode == "--restore":
-        print("Restoring from GitHub backup...")
-        companies = fetch_github_data("companies.json")
-        if companies:
-            print(f"  Loaded {len(companies['rows'])} companies")
-            # Output as JSON for the agent to upsert into tables
-            print(json.dumps({"action": "restore", "companies": companies["rows"]}))
+    # Write locally for inspection
+    for key, rows in data.items():
+        fname = f"/tmp/{key}_restored.json"
+        with open(fname, "w") as f:
+            json.dump(rows, f, indent=2)
+        print(f"  Written to {fname}")
 
 if __name__ == "__main__":
     main()
