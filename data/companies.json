@@ -1,0 +1,247 @@
+{
+  "_schema": {
+    "description": "Target companies to poll for job openings.",
+    "fields": {
+      "company_name": "string \u2014 display name",
+      "ats_provider": "greenhouse | lever | ashby",
+      "ats_slug": "string \u2014 slug used in ATS API URL",
+      "poll_status": "active | broken | paused",
+      "industry_tags": "comma-separated tags: ai_engineering, healthtech, fintech, dev_tools, react_typescript, high_comp_signal",
+      "website_url": "string \u2014 company homepage",
+      "source": "seed | builtin | yc | wellfound | remoteok | wwr | manual",
+      "has_remote_history": "boolean \u2014 true if any remote job ever seen",
+      "user_rank_score": "number 0-1.30 \u2014 set by /rank command",
+      "user_blacklisted": "boolean \u2014 BAD companies from /rank",
+      "last_polled_at": "ISO timestamp",
+      "consecutive_failures": "integer",
+      "notes": "string \u2014 freeform notes"
+    }
+  },
+  "rows": [
+    {
+      "company_name": "Anthropic",
+      "ats_provider": "greenhouse",
+      "ats_slug": "anthropic",
+      "poll_status": "active",
+      "industry_tags": "ai_engineering,high_comp_signal",
+      "website_url": "https://anthropic.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Scale AI",
+      "ats_provider": "greenhouse",
+      "ats_slug": "scaleai",
+      "poll_status": "active",
+      "industry_tags": "ai_engineering,high_comp_signal",
+      "website_url": "https://scale.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Stripe",
+      "ats_provider": "greenhouse",
+      "ats_slug": "stripe",
+      "poll_status": "active",
+      "industry_tags": "fintech,high_comp_signal",
+      "website_url": "https://stripe.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Cloudflare",
+      "ats_provider": "greenhouse",
+      "ats_slug": "cloudflare",
+      "poll_status": "active",
+      "industry_tags": "dev_tools,high_comp_signal",
+      "website_url": "https://cloudflare.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Airtable",
+      "ats_provider": "greenhouse",
+      "ats_slug": "airtable",
+      "poll_status": "active",
+      "industry_tags": "dev_tools,react_typescript",
+      "website_url": "https://airtable.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Oscar Health",
+      "ats_provider": "greenhouse",
+      "ats_slug": "oscar",
+      "poll_status": "active",
+      "industry_tags": "healthtech",
+      "website_url": "https://hioscar.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Figma",
+      "ats_provider": "greenhouse",
+      "ats_slug": "figma",
+      "poll_status": "active",
+      "industry_tags": "dev_tools,react_typescript,high_comp_signal",
+      "website_url": "https://figma.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Vercel",
+      "ats_provider": "greenhouse",
+      "ats_slug": "vercel",
+      "poll_status": "active",
+      "industry_tags": "dev_tools,react_typescript",
+      "website_url": "https://vercel.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Brex",
+      "ats_provider": "greenhouse",
+      "ats_slug": "brex",
+      "poll_status": "active",
+      "industry_tags": "fintech,high_comp_signal",
+      "website_url": "https://brex.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Intercom",
+      "ats_provider": "greenhouse",
+      "ats_slug": "intercom",
+      "poll_status": "active",
+      "industry_tags": "dev_tools,ai_engineering",
+      "website_url": "https://intercom.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Datadog",
+      "ats_provider": "greenhouse",
+      "ats_slug": "datadog",
+      "poll_status": "active",
+      "industry_tags": "dev_tools,high_comp_signal",
+      "website_url": "https://datadoghq.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Robinhood",
+      "ats_provider": "greenhouse",
+      "ats_slug": "robinhood",
+      "poll_status": "active",
+      "industry_tags": "fintech,high_comp_signal",
+      "website_url": "https://robinhood.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Carta",
+      "ats_provider": "greenhouse",
+      "ats_slug": "carta",
+      "poll_status": "active",
+      "industry_tags": "fintech",
+      "website_url": "https://carta.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Twilio",
+      "ats_provider": "greenhouse",
+      "ats_slug": "twilio",
+      "poll_status": "active",
+      "industry_tags": "dev_tools",
+      "website_url": "https://twilio.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Databricks",
+      "ats_provider": "greenhouse",
+      "ats_slug": "databricks",
+      "poll_status": "active",
+      "industry_tags": "ai_engineering,high_comp_signal",
+      "website_url": "https://databricks.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Webflow",
+      "ats_provider": "greenhouse",
+      "ats_slug": "webflow",
+      "poll_status": "active",
+      "industry_tags": "dev_tools,react_typescript",
+      "website_url": "https://webflow.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "MongoDB",
+      "ats_provider": "greenhouse",
+      "ats_slug": "mongodb",
+      "poll_status": "active",
+      "industry_tags": "dev_tools",
+      "website_url": "https://mongodb.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Amplitude",
+      "ats_provider": "greenhouse",
+      "ats_slug": "amplitude",
+      "poll_status": "active",
+      "industry_tags": "dev_tools",
+      "website_url": "https://amplitude.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Mixpanel",
+      "ats_provider": "greenhouse",
+      "ats_slug": "mixpanel",
+      "poll_status": "active",
+      "industry_tags": "dev_tools",
+      "website_url": "https://mixpanel.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Replit",
+      "ats_provider": "ashby",
+      "ats_slug": "replit",
+      "poll_status": "active",
+      "industry_tags": "dev_tools,ai_engineering",
+      "website_url": "https://replit.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Linear",
+      "ats_provider": "ashby",
+      "ats_slug": "linear",
+      "poll_status": "active",
+      "industry_tags": "dev_tools,react_typescript",
+      "website_url": "https://linear.app",
+      "source": "seed"
+    },
+    {
+      "company_name": "Supabase",
+      "ats_provider": "ashby",
+      "ats_slug": "supabase",
+      "poll_status": "active",
+      "industry_tags": "dev_tools,react_typescript",
+      "website_url": "https://supabase.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Alchemy",
+      "ats_provider": "ashby",
+      "ats_slug": "alchemy",
+      "poll_status": "active",
+      "industry_tags": "fintech,dev_tools",
+      "website_url": "https://alchemy.com",
+      "source": "seed"
+    },
+    {
+      "company_name": "Temporal",
+      "ats_provider": "ashby",
+      "ats_slug": "temporal",
+      "poll_status": "active",
+      "industry_tags": "dev_tools",
+      "website_url": "https://temporal.io",
+      "source": "seed"
+    },
+    {
+      "company_name": "Transcarent",
+      "ats_provider": "lever",
+      "ats_slug": "transcarent",
+      "poll_status": "active",
+      "industry_tags": "healthtech",
+      "website_url": "https://transcarent.com",
+      "source": "seed"
+    }
+  ]
+}
