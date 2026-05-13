@@ -1,15 +1,1 @@
-{
-  "_schema": {
-    "description": "Attribute-level learning signals for preference_multiplier.",
-    "fields": {
-      "attribute_type": "stack | industry | remote_status | company_size",
-      "attribute_value": "e.g. React, healthtech, remote, startup",
-      "selected_count": "number",
-      "approved_count": "number",
-      "skipped_count": "number",
-      "preference_score": "number -1.0 to 1.0",
-      "last_updated_at": "ISO timestamp"
-    }
-  },
-  "rows": []
-}
+[]
